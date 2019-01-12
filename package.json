@@ -1,0 +1,24 @@
+{
+  "name": "table-reservation",
+  "version": "1.0.0",
+  "description": "simple table-reservation app",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moralh2/table-reservation.git"
+  },
+  "author": "h morales",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/moralh2/table-reservation/issues"
+  },
+  "homepage": "https://github.com/moralh2/table-reservation#readme"
+}
