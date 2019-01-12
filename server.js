@@ -78,15 +78,20 @@ app.post("/api/reservation", function(req, res) {
   // This works because of our body parsing middleware
   var newReservation = req.body;
 
-  // Using a RegEx Pattern to remove spaces
   newReservation.uniqueId = newReservation.uniqueId.replace(/\s+/g, "").toLowerCase();
 
   console.log(newReservation);
 
-  reservations.push(newReservation);
+  if (reservations.length <= 5) {
+    reservations.push(newReservation);
+    res.json(reservations);
 
-  res.json(reservations);
-});
+  } else {
+    waitlist.push(newReservation);
+    res.json(waitlist);
+  }
+
+})
 
 // Starts the server to begin listening
 // =============================================================
