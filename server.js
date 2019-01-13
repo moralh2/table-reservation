@@ -64,12 +64,12 @@ app.get("/reserve", function(req, res) {
 
 // Displays all reservations
 app.get("/api/reservations", function(req, res) {
-  return res.json(reservations);
+  return res.json(reservations)
 })
 
 // Displays all waitlist
 app.get("/api/waitlist", function(req, res) {
-    return res.json(waitlist);
+    return res.json(waitlist)
 })
 
 // Create Reservation - takes in JSON input
@@ -84,11 +84,11 @@ app.post("/api/reservation", function(req, res) {
 
   if (reservations.length <= 5) {
     reservations.push(newReservation);
-    res.json(reservations);
+    res.json(reservations)
 
   } else {
     waitlist.push(newReservation);
-    res.json(waitlist);
+    res.json(waitlist)
   }
 
 })
@@ -97,4 +97,4 @@ app.post("/api/reservation", function(req, res) {
 // =============================================================
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
-});
+})
