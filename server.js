@@ -13,6 +13,7 @@ var PORT = process.env.PORT || 3000
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
+
 // Test Data (DATA)
 // =============================================================
 
@@ -59,6 +60,8 @@ var reservations = [
 // =============================================================
 
 // Basic route that sends the user first to the AJAX Page
+
+// VIEWS
 app.get("/home", function (req, res) {
     res.sendFile(path.join(__dirname, "home.html"));
 })
@@ -71,11 +74,21 @@ app.get("/reserve", function (req, res) {
     res.sendFile(path.join(__dirname, "reserve.html"));
 })
 
+// ASSETS - JS
+app.get("/tables.js", function (req, res) {
+    res.sendFile(path.join(__dirname, "assets/javascript/tables.js"));
+})
+
+app.get("/reserve.js", function (req, res) {
+    res.sendFile(path.join(__dirname, "assets/javascript/reserve.js"));
+})
+
+// API
+
 // Displays all reservations
 app.get("/api/reservations", function (req, res) {
     return res.json(reservations)
 })
-
 
 // Create Reservation - takes in JSON input
 app.post("/api/reservation", function (req, res) {
