@@ -17,84 +17,82 @@ app.use(express.json())
 // =============================================================
 
 var reservations = [
-  {
-    uniqueId: "122",
-    name: "Paco",
-    phone: "129-999-8888",
-    email: "@wepa"
-  },
-  {
-    uniqueId: "123",
-    name: "Paca",
-    phone: "129-929-8888",
-    email: "@wepe"
-  }
-]
-
-var waitlist = [
     {
-      uniqueId: "124",
-      name: "Anna",
-      phone: "120-999-8888",
-      email: "@wep2"
+        uniqueId: "122",
+        name: "Paco",
+        phone: "129-999-8888",
+        email: "@wepa"
     },
     {
-      uniqueId: "125",
-      name: "Onno",
-      phone: "129-229-8888",
-      email: "@wep5"
+        uniqueId: "123",
+        name: "Paca",
+        phone: "129-929-8888",
+        email: "@wepe"
+    },
+    {
+        uniqueId: "124",
+        name: "Anna",
+        phone: "120-999-8888",
+        email: "@wep2"
+    },
+    {
+        uniqueId: "125",
+        name: "Onno",
+        phone: "129-229-8888",
+        email: "@wep5"
+    },
+    {
+        uniqueId: "126",
+        name: "Eddie",
+        phone: "120-999-8888",
+        email: "@wep3"
+    },
+    {
+        uniqueId: "127",
+        name: "Ellen",
+        phone: "129-229-8888",
+        email: "@wep6"
     }
-  ]
+]
 
 // Routes
 // =============================================================
 
 // Basic route that sends the user first to the AJAX Page
-app.get("/home", function(req, res) {
-  res.sendFile(path.join(__dirname, "home.html"));
+app.get("/home", function (req, res) {
+    res.sendFile(path.join(__dirname, "home.html"));
 })
 
-app.get("/tables", function(req, res) {
-  res.sendFile(path.join(__dirname, "tables.html"));
+app.get("/tables", function (req, res) {
+    res.sendFile(path.join(__dirname, "tables.html"));
 })
 
-app.get("/reserve", function(req, res) {
+app.get("/reserve", function (req, res) {
     res.sendFile(path.join(__dirname, "reserve.html"));
-  })
+})
 
 // Displays all reservations
-app.get("/api/reservations", function(req, res) {
-  return res.json(reservations)
+app.get("/api/reservations", function (req, res) {
+    return res.json(reservations)
 })
 
-// Displays all waitlist
-app.get("/api/waitlist", function(req, res) {
-    return res.json(waitlist)
-})
 
 // Create Reservation - takes in JSON input
-app.post("/api/reservation", function(req, res) {
-  // req.body hosts is equal to the JSON post sent from the user
-  // This works because of our body parsing middleware
-  var newReservation = req.body;
+app.post("/api/reservation", function (req, res) {
+    // req.body hosts is equal to the JSON post sent from the user
+    // This works because of our body parsing middleware
+    var newReservation = req.body;
+    newReservation.uniqueId = newReservation.uniqueId.replace(/\s+/g, "").toLowerCase();
+    console.log(newReservation);
 
-  newReservation.uniqueId = newReservation.uniqueId.replace(/\s+/g, "").toLowerCase();
-
-  console.log(newReservation);
-
-  if (reservations.length <= 5) {
+    // Push to just on var; control 5+ logic in script
     reservations.push(newReservation);
     res.json(reservations)
-
-  } else {
-    waitlist.push(newReservation);
-    res.json(waitlist)
-  }
 
 })
 
 // Starts the server to begin listening
 // =============================================================
-app.listen(PORT, function() {
-  console.log("App listening on PORT " + PORT);
+app.listen(PORT, function () {
+    console.log("App listening on PORT " + PORT);
 })
