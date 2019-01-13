@@ -23,8 +23,8 @@
             <h1 class="display-4">Hot Restaurant</h1>
             <hr class="my-4">
             <p>Current Reservations and Waiting List</p>
-            <a class="btn btn-secondary btn-lg" href="#" role="button"><i class="fas fa-home"></i></a>
-            <a class="btn btn-danger btn-lg" href="#" role="button"><i class="fas fa-calendar-day"></i> Make a
+            <a class="btn btn-secondary btn-lg" href="/home" role="button"><i class="fas fa-home"></i></a>
+            <a class="btn btn-danger btn-lg" href="/reserve" role="button"><i class="fas fa-calendar-day"></i> Make a
                 Reservations</a>
         </div>
 
@@ -107,9 +107,7 @@
     </div>
 
     <script type="text/javascript">
-
         $(document).ready(function () {
-
             $.get("/api/reservations", function (data) {
                 if (data) {
                     reservationTable = $('tbody#current-reservations')
@@ -132,9 +130,6 @@
                 }
             })
         })
-
-
-
     </script>
 
 
